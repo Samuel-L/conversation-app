@@ -1,0 +1,27 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import"
+  ],
+  "globals": {
+    "window": true,
+    "localStorage": true,
+    "document": true,
+  },
+  "rules": {
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "to" ]
+    }],
+    "jsx-a11y/label-has-for": [2, {
+      "required": {
+        "some": ["nesting", "id" ]
+      },
+    }],
+  },
+}
+
