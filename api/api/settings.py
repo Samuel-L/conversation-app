@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # project apps
+    'register.apps.RegisterConfig',
     # Third party apps
     'rest_framework',
     'corsheaders',
