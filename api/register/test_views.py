@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework.test import APITestCase
 from rest_framework import status
 
-class RegistrationViewSetTests(APITestCase):
+class RegisterViewSetTests(APITestCase):
     def setUp(self):
         self.url = reverse('register-list')
         self.valid_data = { 'username': 'Account', 'password': 'Password' }

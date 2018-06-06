@@ -1,8 +1,8 @@
 from rest_framework import viewsets, mixins
 from rest_framework.permissions import AllowAny
 
-from register.serializers import RegistrationSerializer
+from register.serializers import RegisterSerializer
 
-class RegistrationViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
+class RegisterViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     permission_classes = [AllowAny]
-    serializer_class = RegistrationSerializer
+    serializer_class = RegisterSerializer

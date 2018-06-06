@@ -1,13 +1,13 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 
-from register.serializers import RegistrationSerializer
+from register.serializers import RegisterSerializer
 
-class RegistrationSerializerTests(TestCase):
+class RegisterSerializerTests(TestCase):
     def setUp(self):
         self.user_attributes = { 'username': 'account', 'password': 'accountPassword' }
         self.user = User.objects.create(**self.user_attributes)
-        self.serializer = RegistrationSerializer(instance=self.user)
+        self.serializer = RegisterSerializer(instance=self.user)
         self.data = self.serializer.data
 
     def test_contains_expected_fields(self):
@@ -27,6 +27,6 @@ class RegistrationSerializerTests(TestCase):
         Method should return the username of the newly created user
         """
         attributes = { 'username': 'TestUsername', 'password': 'TestPassword' }
-        created_user = RegistrationSerializer().create(attributes)
+        created_user = RegisterSerializer().create(attributes)
 
         self.assertEqual(User(**attributes).username, created_user.username)
