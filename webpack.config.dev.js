@@ -14,6 +14,7 @@ module.exports = {
   module: {
     rules: [
       { test: [/\.js$/, /\.jsx$/], loader: 'babel-loader', exclude: /node_modules/ },
+      { test: [/\.js?$/, /\.jsx$/], loader: 'eslint-loader', exclude: /node_modules/ },
     ],
   },
   resolve: { extensions: ['.js', '.jsx'] },
