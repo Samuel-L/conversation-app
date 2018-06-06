@@ -13,7 +13,7 @@ const styles = theme => ({
   },
 });
 
-export const InputField = (props) => {
+const InputField = (props) => {
   const { classes } = props;
 
   return (
