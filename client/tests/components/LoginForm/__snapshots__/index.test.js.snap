@@ -5,30 +5,39 @@ exports[`component: LoginForm rendering matches snapshot 1`] = `
   onSubmit={[Function]}
 >
   <div
-    className="MuiGrid-container-1"
+    className="MuiGrid-container-1 MuiGrid-justify-xs-flex-end-19"
   >
     <div
       className="MuiGrid-item-2 MuiGrid-grid-xs-12-39"
     >
+      <h1
+        className="MuiTypography-root-92 MuiTypography-display1-96"
+      >
+        Login
+      </h1>
+    </div>
+    <div
+      className="MuiGrid-item-2 MuiGrid-grid-xs-12-39"
+    >
       <div
-        className="MuiFormControl-root-93 InputField-formControl-92"
+        className="MuiFormControl-root-117 InputField-formControl-116"
         onBlur={[Function]}
         onFocus={[Function]}
       >
         <label
-          className="MuiFormLabel-root-102 MuiInputLabel-root-97 MuiInputLabel-formControl-98 MuiInputLabel-animated-101"
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
           data-shrink={false}
           htmlFor="username"
         >
           Username
         </label>
         <div
-          className="MuiInput-root-107 MuiInput-formControl-108 MuiInput-underline-111"
+          className="MuiInput-root-131 MuiInput-formControl-132 MuiInput-underline-135"
         >
           <input
             aria-invalid={false}
             aria-required={false}
-            className="MuiInput-input-115"
+            className="MuiInput-input-139"
             disabled={false}
             id="username"
             onBlur={[Function]}
@@ -39,7 +48,7 @@ exports[`component: LoginForm rendering matches snapshot 1`] = `
           />
         </div>
         <p
-          className="MuiFormHelperText-root-120"
+          className="MuiFormHelperText-root-144"
           id="username-help-text"
         />
       </div>
@@ -48,24 +57,24 @@ exports[`component: LoginForm rendering matches snapshot 1`] = `
       className="MuiGrid-item-2 MuiGrid-grid-xs-12-39"
     >
       <div
-        className="MuiFormControl-root-93 InputField-formControl-92"
+        className="MuiFormControl-root-117 InputField-formControl-116"
         onBlur={[Function]}
         onFocus={[Function]}
       >
         <label
-          className="MuiFormLabel-root-102 MuiInputLabel-root-97 MuiInputLabel-formControl-98 MuiInputLabel-animated-101"
+          className="MuiFormLabel-root-126 MuiInputLabel-root-121 MuiInputLabel-formControl-122 MuiInputLabel-animated-125"
           data-shrink={false}
           htmlFor="password"
         >
           Password
         </label>
         <div
-          className="MuiInput-root-107 MuiInput-formControl-108 MuiInput-underline-111"
+          className="MuiInput-root-131 MuiInput-formControl-132 MuiInput-underline-135"
         >
           <input
             aria-invalid={false}
             aria-required={false}
-            className="MuiInput-input-115 MuiInput-inputType-118"
+            className="MuiInput-input-139 MuiInput-inputType-142"
             disabled={false}
             id="password"
             onBlur={[Function]}
@@ -76,16 +85,46 @@ exports[`component: LoginForm rendering matches snapshot 1`] = `
           />
         </div>
         <p
-          className="MuiFormHelperText-root-120"
+          className="MuiFormHelperText-root-144"
           id="password-help-text"
         />
       </div>
     </div>
     <div
-      className="MuiGrid-item-2 MuiGrid-grid-xs-12-39"
+      className="MuiGrid-item-2 MuiGrid-grid-xs-6-33"
     >
       <button
-        className="MuiButtonBase-root-146 MuiButton-root-124 MuiButton-contained-133 MuiButton-containedPrimary-134 MuiButton-raised-136 MuiButton-raisedPrimary-137"
+        className="MuiButtonBase-root-170 MuiButton-root-148 MuiButton-textSecondary-151 MuiButton-flat-152 MuiButton-flatSecondary-154"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[MockFunction]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="button"
+      >
+        <span
+          className="MuiButton-label-149"
+        >
+          Don't have an account? Click here to create one.
+        </span>
+        <span
+          className="MuiTouchRipple-root-173"
+        />
+      </button>
+    </div>
+    <div
+      className="MuiGrid-item-2 MuiGrid-grid-xs-6-33"
+    >
+      <button
+        className="MuiButtonBase-root-170 MuiButton-root-148 MuiButton-contained-157 MuiButton-containedPrimary-158 MuiButton-raised-160 MuiButton-raisedPrimary-161"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -101,12 +140,12 @@ exports[`component: LoginForm rendering matches snapshot 1`] = `
         type="submit"
       >
         <span
-          className="MuiButton-label-125"
+          className="MuiButton-label-149"
         >
           Login
         </span>
         <span
-          className="MuiTouchRipple-root-149"
+          className="MuiTouchRipple-root-173"
         />
       </button>
     </div>

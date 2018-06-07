@@ -7,6 +7,7 @@ import { LoginForm } from '../../../src/components/LoginForm';
 describe('component: LoginForm', () => {
   const login = jest.fn();
   const resetState = jest.fn();
+  const handleChangeComponent = jest.fn();
   const classes = { button: '' };
   let wrapper;
 
@@ -16,6 +17,7 @@ describe('component: LoginForm', () => {
       <LoginForm
         login={login}
         resetState={resetState}
+        handleChangeComponent={handleChangeComponent}
         classes={classes}
       />
     );
@@ -24,7 +26,12 @@ describe('component: LoginForm', () => {
   describe('rendering', () => {
     it('matches snapshot', () => {
       const tree = renderer.create(
-        <LoginForm login={login} resetState={resetState} classes={classes} />
+        <LoginForm
+          login={login}
+          resetState={resetState}
+          classes={classes}
+          handleChangeComponent={handleChangeComponent}
+        />
       ).toJSON(); 
 
       expect(tree).toMatchSnapshot();

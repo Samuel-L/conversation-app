@@ -7,15 +7,19 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 
 import InputField from '../InputField';
 import Snackbars from './Snackbars';
 import { registerUser, removeError } from '../../redux-modules/register';
 
 const styles = theme => ({
+  buttonGrid: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
   button: {
     margin: theme.spacing.unit,
-    justifySelf: 'flex-end',
   },
 });
 
@@ -91,6 +95,11 @@ export class RegisterForm extends Component {
       <form onSubmit={this.handleFormSubmit}>
         <Grid container>
           <Grid item xs={12}>
+            <Typography variant="display1">
+              Register
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
             <InputField
               error={this.state.errors.username.error}
               errorMessage={this.state.errors.username.message}
@@ -123,7 +132,12 @@ export class RegisterForm extends Component {
               handleChange={this.handleInputChange}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
+            <Button color="secondary" className={classes.button} onClick={this.props.handleChangeComponent}>
+              Already have an account? Click here to log in.
+            </Button>
+          </Grid>
+          <Grid item xs={6} className={classes.buttonGrid}>
             { !this.props.loading
               ?
                 <Button type="submit" variant="raised" color="primary" className={classes.button}>
@@ -153,6 +167,7 @@ RegisterForm.propTypes = {
   success: PropTypes.bool,
   error: PropTypes.number,
   usernameTaken: PropTypes.bool,
+  handleChangeComponent: PropTypes.func.isRequired,
 };
 
 RegisterForm.defaultProps = {

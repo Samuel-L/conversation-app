@@ -2,44 +2,19 @@
 
 exports[`component: Header matches snapshot 1`] = `
 <div
-  className="Header-root-1"
+  className=""
 >
   <header
-    className="MuiPaper-root-11 MuiPaper-elevation4-17 MuiAppBar-root-3 MuiAppBar-positionStatic-7 MuiAppBar-colorPrimary-9"
+    className="MuiPaper-root-9 MuiPaper-elevation4-15 MuiAppBar-root-1 MuiAppBar-positionStatic-5 MuiAppBar-colorPrimary-7"
   >
     <div
-      className="MuiToolbar-root-38 MuiToolbar-gutters-39"
+      className="MuiToolbar-root-36 MuiToolbar-gutters-37"
     >
       <h2
-        className="MuiTypography-root-40 MuiTypography-title-46 MuiTypography-colorInherit-59 Header-flex-2"
+        className="MuiTypography-root-38 MuiTypography-title-44 MuiTypography-colorInherit-57"
       >
         Conversationalist
       </h2>
-      <button
-        className="MuiButtonBase-root-86 MuiButton-root-64 MuiButton-colorInherit-72 MuiButton-flat-68"
-        disabled={false}
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex="0"
-        type="button"
-      >
-        <span
-          className="MuiButton-label-65"
-        >
-          Log out
-        </span>
-        <span
-          className="MuiTouchRipple-root-89"
-        />
-      </button>
     </div>
   </header>
 </div>

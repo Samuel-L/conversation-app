@@ -7,12 +7,17 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 
 import InputField from '../InputField';
 import Snackbars from './Snackbars';
 import { login, resetState } from '../../redux-modules/auth';
 
 const styles = theme => ({
+  buttonGrid: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
   button: {
     margin: theme.spacing.unit,
   },
@@ -70,7 +75,12 @@ export class LoginForm extends Component {
 
     return (
       <form onSubmit={this.handleFormSubmit}>
-        <Grid container>
+        <Grid container justify="flex-end">
+          <Grid item xs={12}>
+            <Typography variant="display1">
+              Login
+            </Typography>
+          </Grid>
           <Grid item xs={12}>
             <InputField
               error={this.state.errors.username.error}
@@ -93,7 +103,12 @@ export class LoginForm extends Component {
               handleChange={this.handleInputChange}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
+            <Button color="secondary" className={classes.button} onClick={this.props.handleChangeComponent}>
+              { "Don't have an account? Click here to create one." }
+            </Button>
+          </Grid>
+          <Grid item xs={6} className={classes.buttonGrid}>
             { !this.props.loading
               ?
                 <Button type="submit" variant="raised" color="primary" className={classes.button}>
@@ -121,6 +136,7 @@ LoginForm.propTypes = {
   loading: PropTypes.bool,
   success: PropTypes.bool,
   error: PropTypes.number,
+  handleChangeComponent: PropTypes.func.isRequired,
 };
 
 LoginForm.defaultProps = {

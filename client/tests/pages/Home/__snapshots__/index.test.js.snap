@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`page: Home rendering matches snapshot 1`] = `
+<div
+  className="MuiGrid-container-1 MuiGrid-align-items-xs-center-9"
+>
+  <div
+    className="MuiGrid-item-2 MuiGrid-grid-xs-12-39 MuiGrid-grid-md-6-59"
+  >
+    <h1
+      className="MuiTypography-root-92 MuiTypography-headline-97 MuiTypography-gutterBottom-109 MuiTypography-alignCenter-105"
+    >
+      With 
+      Conversationalist
+       you can send chat with your friends.
+    </h1>
+  </div>
+  <div
+    className="MuiGrid-item-2 MuiGrid-grid-xs-12-39 MuiGrid-grid-md-6-59"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        className="MuiGrid-container-1 MuiGrid-justify-xs-flex-end-19"
+      >
+        <div
+          className="MuiGrid-item-2 MuiGrid-grid-xs-12-39"
+        >
+          <h1
+            className="MuiTypography-root-92 MuiTypography-display1-96"
+          >
+            Login
+          </h1>
+        </div>
+        <div
+          className="MuiGrid-item-2 MuiGrid-grid-xs-12-39"
+        >
+          <div
+            className="MuiFormControl-root-119 InputField-formControl-118"
+            onBlur={[Function]}
+            onFocus={[Function]}
+          >
+            <label
+              className="MuiFormLabel-root-128 MuiInputLabel-root-123 MuiInputLabel-formControl-124 MuiInputLabel-animated-127"
+              data-shrink={false}
+              htmlFor="username"
+            >
+              Username
+            </label>
+            <div
+              className="MuiInput-root-133 MuiInput-formControl-134 MuiInput-underline-137"
+            >
+              <input
+                aria-invalid={false}
+                aria-required={false}
+                className="MuiInput-input-141"
+                disabled={false}
+                id="username"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="text"
+                value=""
+              />
+            </div>
+            <p
+              className="MuiFormHelperText-root-146"
+              id="username-help-text"
+            />
+          </div>
+        </div>
+        <div
+          className="MuiGrid-item-2 MuiGrid-grid-xs-12-39"
+        >
+          <div
+            className="MuiFormControl-root-119 InputField-formControl-118"
+            onBlur={[Function]}
+            onFocus={[Function]}
+          >
+            <label
+              className="MuiFormLabel-root-128 MuiInputLabel-root-123 MuiInputLabel-formControl-124 MuiInputLabel-animated-127"
+              data-shrink={false}
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <div
+              className="MuiInput-root-133 MuiInput-formControl-134 MuiInput-underline-137"
+            >
+              <input
+                aria-invalid={false}
+                aria-required={false}
+                className="MuiInput-input-141 MuiInput-inputType-144"
+                disabled={false}
+                id="password"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="password"
+                value=""
+              />
+            </div>
+            <p
+              className="MuiFormHelperText-root-146"
+              id="password-help-text"
+            />
+          </div>
+        </div>
+        <div
+          className="MuiGrid-item-2 MuiGrid-grid-xs-6-33"
+        >
+          <button
+            className="MuiButtonBase-root-172 MuiButton-root-150 MuiButton-textSecondary-153 MuiButton-flat-154 MuiButton-flatSecondary-156 Connect-LoginForm--button-117"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex="0"
+            type="button"
+          >
+            <span
+              className="MuiButton-label-151"
+            >
+              Don't have an account? Click here to create one.
+            </span>
+            <span
+              className="MuiTouchRipple-root-175"
+            />
+          </button>
+        </div>
+        <div
+          className="MuiGrid-item-2 MuiGrid-grid-xs-6-33 Connect-LoginForm--buttonGrid-116"
+        >
+          <button
+            className="MuiButtonBase-root-172 MuiButton-root-150 MuiButton-contained-159 MuiButton-containedPrimary-160 MuiButton-raised-162 MuiButton-raisedPrimary-163 Connect-LoginForm--button-117"
+            disabled={false}
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex="0"
+            type="submit"
+          >
+            <span
+              className="MuiButton-label-151"
+            >
+              Login
+            </span>
+            <span
+              className="MuiTouchRipple-root-175"
+            />
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;

@@ -8,6 +8,7 @@ describe('component: RegisterForm', () => {
   const register = jest.fn();
   const removeError = jest.fn();
   const classes = { button: '' };
+  const handleChangeComponent = jest.fn();
   let wrapper;
 
   beforeEach(() => {
@@ -17,13 +18,19 @@ describe('component: RegisterForm', () => {
         register={register}
         removeError={removeError}
         classes={classes}
+        handleChangeComponent={handleChangeComponent}
       />
     );
   });
   describe('rendering', () => {
     it('matches snapshot', () => {
       const tree = renderer.create(
-        <RegisterForm register={register} removeError={removeError} classes={classes} />
+        <RegisterForm
+          register={register}
+          removeError={removeError}
+          classes={classes}
+          handleChangeComponent={handleChangeComponent}
+        />
       ).toJSON();
       expect(tree).toMatchSnapshot();
     });

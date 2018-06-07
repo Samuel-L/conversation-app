@@ -9,6 +9,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 const styles = theme => ({
   formControl: {
+    display: 'flex',
     margin: theme.spacing.unit,
   },
 });
