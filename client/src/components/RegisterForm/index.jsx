@@ -19,7 +19,7 @@ const styles = theme => ({
   },
 });
 
-class RegisterForm extends Component {
+export class RegisterForm extends Component {
   state = {
     username: '',
     password: '',
