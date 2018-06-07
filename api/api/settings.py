@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import datetime
 import dj_database_url
 from decouple import config
 
@@ -162,3 +163,7 @@ else:
     CORS_ORIGIN_WHITELIST = (
         config('WHITELIST_URL')
     )
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=1800),
+}
