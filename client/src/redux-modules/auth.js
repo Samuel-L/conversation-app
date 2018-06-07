@@ -1,4 +1,7 @@
+import axios from 'axios';
 import decode from 'jwt-decode';
+
+import { apiURL } from '../utils/helpers';
 
 const USER_LOGIN_REQUEST = 'auth/USER_LOGIN_REQUEST';
 const USER_LOGIN_SUCCESS = 'auth/USER_LOGIN_SUCCESS';
@@ -67,4 +70,32 @@ export default (state = getInitialState(), action = {}) => {
       return state;
     }
   }
+};
+
+export const login = (username, password) => (dispatch) => {
+  dispatch({ type: USER_LOGIN_REQUEST });
+
+  const headers = { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' };
+  const payload = { username, password };
+
+  return axios.post(`${apiURL}/obtain-token/`, payload, headers)
+    .then((response) => {
+      const { token } = response.data;
+
+      localStorage.setItem('token', token);
+      dispatch({ type: USER_LOGIN_SUCCESS, payload: token });
+    })
+    .catch((error) => {
+      dispatch({ type: USER_LOGIN_FAILURE, payload: error.response.status });
+    });
+};
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem('token');
+
+  dispatch({ type: USER_LOGOUT });
+};
+
+export const resetState = () => (dispatch) => {
+  dispatch({ type: RESET_STATE });
 };
