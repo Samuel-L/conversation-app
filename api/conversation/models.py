@@ -19,6 +19,7 @@ class Conversation(models.Model):
 
 class Message(models.Model):
     sent_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    sent_to = models.ForeignKey(User, on_delete=models.CASCADE)
     conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)

@@ -3,6 +3,7 @@
     "pk": 1,
     "fields": {
       "sent_by": 1,
+      "sent_to": 2,
       "conversation": 1,
       "created_at": "2018-03-16T20:41:28+00:00",
       "is_read": true,
@@ -13,6 +14,7 @@
     "pk": 2,
     "fields": {
       "sent_by": 2,
+      "sent_to": 1,
       "conversation": 1,
       "created_at": "2018-03-16T20:45:28+00:00",
       "is_read": false,
