@@ -16,3 +16,16 @@ class Conversation(models.Model):
 
     def __str__(self):
         return u'{0} - {1}/{2}'.format(self.topic, self.user_a, self.user_b)
+
+class Message(models.Model):
+    sent_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+    body = models.TextField()
+
+    class Meta:
+        ordering = ('id',)
+
+    def __str__(self):
+        return u'{0} (sent by: {1}) - {2}'.format(self.conversation, self.sent_by, self.created_at)
