@@ -2,9 +2,9 @@ from django.db.models import Q
 from rest_framework import viewsets, status
 from rest_framework.exceptions import ValidationError
 
-from utils.permissions import IsPartOfConversation
-from conversation.models import Conversation
-from conversation.serializers import ConversationSerializer
+from utils.permissions import IsPartOfConversation, IsSenderOrReceiver, IsReceiver
+from conversation.models import Conversation, Message
+from conversation.serializers import ConversationSerializer, MessageSerializer, IsReadMessageSerializer
 
 class ConversationViewSet(viewsets.ModelViewSet):
     serializer_class = ConversationSerializer
@@ -21,3 +21,47 @@ class ConversationViewSet(viewsets.ModelViewSet):
         if serializer.validated_data['user_b'] == self.request.user:
             raise ValidationError('You cannot create a conversation with yourself')
         serializer.save(user_a=self.request.user)
+
+class MessageViewSet(viewsets.ModelViewSet):
+    serializer_class = MessageSerializer
+
+    def get_queryset(self):
+        """
+        Only return messages where requesting user is sender
+        or receiver.
+        """
+        messages = Message.objects.filter(Q(sent_by=self.request.user) | Q(sent_to=self.request.user))
+        return messages
+
+    def perform_create(self, serializer):
+        """
+        Set the 'sent_by' field to the requesting user and the 'sent_to'
+        field to the other part of the conversation
+        """
+        conversation_id = serializer.validated_data['conversation'].id
+        conversation = Conversation.objects.get(pk=conversation_id)
+        if conversation.user_a == self.request.user:
+            sent_to = conversation.user_b
+        else: 
+            sent_to = conversation.user_a
+
+        serializer.save(sent_by=self.request.user, sent_to=sent_to)
+
+    def get_serializer_class(self):
+        """
+        If request method is PUT or PATCH, return the serializer that only has
+        the 'is_read' field
+        """
+        serializer_class = self.serializer_class
+        if self.request.method == 'PUT' or self.request.method == 'PATCH':
+            serializer_class = IsReadMessageSerializer
+        return serializer_class
+    
+    def get_permissions(self):
+        """
+        If request method is PUT or PATCH, the requesting user
+        needs to be the receiver.
+        """
+        if self.request.method == 'PUT' or self.request.method == 'PATCH':
+            return [IsReceiver()]
+        return [IsSenderOrReceiver()]

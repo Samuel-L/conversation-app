@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from conversation.models import Conversation
-
 class ConversationViewSet(APITestCase):
     fixtures = ['user_fixture.json', 'conversation_fixture.json']
 
@@ -21,12 +19,12 @@ class ConversationViewSet(APITestCase):
         response = self.client.post(self.url, data=self.data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-
     def test_user_a_is_set_by_view(self):
         self.client.force_authenticate(user=self.user)
 
         response = self.client.post(self.url, data=self.data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['user_a'], self.user.username)
 
     def test_only_returns_conversations_where_user_is_included(self):
         self.client.force_authenticate(user=self.user)
@@ -35,3 +33,42 @@ class ConversationViewSet(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1) 
 
+class MessageViewSet(APITestCase):
+    fixtures = ['user_fixture.json', 'conversation_fixture.json', 'message_fixture.json']
+
+    def setUp(self):
+        self.url = reverse('messages-list')
+        self.detail_url = reverse('messages-detail', kwargs={'pk': 1})
+        self.user_a = User.objects.get(pk=1)
+        self.user_b = User.objects.get(pk=2)
+        self.data = { 'conversation': 1, 'is_read': False, 'body': 'This is a text message' }
+
+    def test_sent_by_is_set_by_view(self):
+        self.client.force_authenticate(user=self.user_a)
+
+        response = self.client.post(self.url, data=self.data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['sent_by'], self.user_a.username)
+
+    def test_sent_to_is_set_by_view(self):
+        self.client.force_authenticate(user=self.user_a)
+
+        response = self.client.post(self.url, data=self.data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['sent_to'], self.user_b.username)
+
+    def test_only_returns_messages_where_user_is_included(self):
+        self.client.force_authenticate(user=self.user_a)
+
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+
+    def test_only_receiver_can_alter_is_read_field(self):
+        self.client.force_authenticate(user=self.user_a)
+        response = self.client.patch(self.detail_url, { 'is_read': True })
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        self.client.force_authenticate(user=self.user_b)
+        response = self.client.patch(self.detail_url, { 'is_read': True})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
