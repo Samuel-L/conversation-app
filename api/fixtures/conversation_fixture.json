@@ -9,5 +9,17 @@
       "is_archived": false,
       "topic": "Test conversation"
     }
+  },
+  { "model": "conversation.Conversation",
+    "pk": 2,
+    "fields": {
+      "user_a": 2,
+      "user_b": 3,
+      "created_at": "2018-03-16T17:41:28+00:00",
+      "updated_at": "2018-03-17T10:41:28+00:00",
+      "is_archived": false,
+      "topic": "Test conversation 2"
+    }
   }
+
 ]

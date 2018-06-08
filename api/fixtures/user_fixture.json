@@ -12,5 +12,12 @@
             "username": "User2",
             "password": "Password2"
         }
+    },
+    { "model": "auth.user",
+      "pk": 3,
+      "fields": {
+        "username": "User3",
+        "password": "Password3"
+      }
     }
 ]
