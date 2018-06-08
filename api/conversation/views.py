@@ -45,6 +45,9 @@ class MessageViewSet(viewsets.ModelViewSet):
         else: 
             sent_to = conversation.user_a
 
+        if conversation.is_archived:
+            raise ValidationError('That conversation is archived!')
+
         serializer.save(sent_by=self.request.user, sent_to=sent_to)
 
     def get_serializer_class(self):

@@ -31,7 +31,7 @@ class ConversationViewSet(APITestCase):
 
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1) 
+        self.assertEqual(len(response.data), 2) 
 
 class MessageViewSet(APITestCase):
     fixtures = ['user_fixture.json', 'conversation_fixture.json', 'message_fixture.json']
@@ -72,3 +72,10 @@ class MessageViewSet(APITestCase):
         self.client.force_authenticate(user=self.user_b)
         response = self.client.patch(self.detail_url, { 'is_read': True})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_cannot_send_messages_on_archived_conversation(self):
+        self.client.force_authenticate(user=self.user_a)
+        self.data['conversation'] = 3
+
+        response = self.client.post(self.url, data=self.data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
