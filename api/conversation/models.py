@@ -5,7 +5,7 @@ class Conversation(models.Model):
     user_a = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_a')
     user_b = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_b')
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField()
+    updated_at = models.DateTimeField(auto_now=True)
     is_archived = models.BooleanField(default=False)
     topic = models.CharField(max_length=255)
 
