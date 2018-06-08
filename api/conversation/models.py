@@ -9,5 +9,10 @@ class Conversation(models.Model):
     is_archived = models.BooleanField(default=False)
     topic = models.CharField(max_length=255)
 
+    class Meta:
+        # The prefix "-" means "Order by this field in descending order".
+        # Default (without prefix) is ascending.
+        ordering = ('-updated_at',)
+
     def __str__(self):
         return u'{0} - {1}/{2}'.format(self.topic, self.user_a, self.user_b)
