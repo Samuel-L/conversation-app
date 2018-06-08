@@ -34,11 +34,12 @@ class MessageSerializerTests(TestCase):
 
     def test_contains_expected_fields(self):
         self.assertEqual(self.data.keys(), set([
-            'id', 'sent_by', 'conversation', 'created_at', 'is_read', 'body',
+            'id', 'sent_by', 'sent_to', 'conversation', 'created_at', 'is_read', 'body',
         ]))
 
     def test_serializer_fields_content(self):
         self.assertEqual(self.data['sent_by'], self.message.sent_by.username)
+        self.assertEqual(self.data['sent_to'], self.message.sent_to.username)
         self.assertEqual(self.data['conversation'], self.message.conversation.id)
         self.assertEqual(self.data['created_at'], self.message.created_at)
         self.assertEqual(self.data['is_read'], self.message.is_read)

@@ -15,8 +15,9 @@ class ConversationSerializer(serializers.ModelSerializer):
 
 class MessageSerializer(serializers.ModelSerializer):
     sent_by = serializers.ReadOnlyField(source="sent_by.username")
+    sent_to = serializers.ReadOnlyField(source="sent_to.username")
     created_at = serializers.ReadOnlyField()
     
     class Meta:
         model = Message
-        fields = ('id', 'sent_by', 'conversation', 'created_at', 'is_read', 'body')
+        fields = ('id', 'sent_by', 'sent_to', 'conversation', 'created_at', 'is_read', 'body')
