@@ -21,3 +21,8 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = ('id', 'sent_by', 'sent_to', 'conversation', 'created_at', 'is_read', 'body')
+
+class IsReadMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ('id', 'is_read')
