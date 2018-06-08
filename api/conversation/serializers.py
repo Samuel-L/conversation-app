@@ -5,7 +5,7 @@ from conversation.models import Conversation
 
 class ConversationSerializer(serializers.ModelSerializer):
     user_a = serializers.ReadOnlyField(source="user_a.username")
-    user_b = serializers.ReadOnlyField(source="user_b.username")
+    user_b = serializers.SlugRelatedField(slug_field="username", queryset=User.objects.all())
     created_at = serializers.ReadOnlyField()
     updated_at = serializers.ReadOnlyField()
 
