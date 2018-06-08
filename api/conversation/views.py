@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.utils import timezone
 from rest_framework import viewsets, status
 from rest_framework.exceptions import ValidationError
 
@@ -36,7 +37,7 @@ class MessageViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """
         Set the 'sent_by' field to the requesting user and the 'sent_to'
-        field to the other part of the conversation
+        field to the other part of the conversation.
         """
         conversation_id = serializer.validated_data['conversation'].id
         conversation = Conversation.objects.get(pk=conversation_id)
@@ -48,7 +49,11 @@ class MessageViewSet(viewsets.ModelViewSet):
         if conversation.is_archived:
             raise ValidationError('That conversation is archived!')
 
-        serializer.save(sent_by=self.request.user, sent_to=sent_to)
+        created_at = timezone.now()
+        serializer.save(sent_by=self.request.user, sent_to=sent_to, created_at=created_at)
+        # Update conversation instance's updated_at field.
+        conversation.updated_at = created_at
+        conversation.save()
 
     def get_serializer_class(self):
         """
