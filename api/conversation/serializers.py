@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
@@ -14,6 +15,17 @@ class ConversationSerializer(serializers.ModelSerializer):
         fields = ('id', 'user_a', 'user_b', 'created_at', 'updated_at', 'is_archived', 'topic')
 
 class MessageSerializer(serializers.ModelSerializer):
+    def __init__(self, *args, **kwargs):
+        """
+        Filter out conversations where requesting user is not
+        'user_a' or 'user_b'.
+        """
+        super(MessageSerializer, self).__init__(*args, **kwargs)
+        request_user = self.context['request'].user
+        self.fields['conversation'].queryset = Conversation.objects.filter(
+            Q(user_a=request_user) | Q(user_b=request_user)
+        )
+
     sent_by = serializers.ReadOnlyField(source="sent_by.username")
     sent_to = serializers.ReadOnlyField(source="sent_to.username")
     created_at = serializers.ReadOnlyField()
