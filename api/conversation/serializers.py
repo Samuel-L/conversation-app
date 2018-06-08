@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-from conversation.models import Conversation
+from conversation.models import Conversation, Message
 
 class ConversationSerializer(serializers.ModelSerializer):
     user_a = serializers.ReadOnlyField(source="user_a.username")
@@ -12,3 +12,11 @@ class ConversationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Conversation
         fields = ('id', 'user_a', 'user_b', 'created_at', 'updated_at', 'is_archived', 'topic')
+
+class MessageSerializer(serializers.ModelSerializer):
+    sent_by = serializers.ReadOnlyField(source="sent_by.username")
+    created_at = serializers.ReadOnlyField()
+    
+    class Meta:
+        model = Message
+        fields = ('id', 'sent_by', 'conversation', 'created_at', 'is_read', 'body')
