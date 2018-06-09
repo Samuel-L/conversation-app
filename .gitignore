@@ -1,4 +1,6 @@
 env
+*.jpg
+*.png
 CACHE
 node_modules
 .env
