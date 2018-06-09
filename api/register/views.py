@@ -13,9 +13,7 @@ class ProfileViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin,
     mixins.ListModelMixin, mixins.UpdateModelMixin):
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
-
-    def get_queryset(self):
-        return Profile.objects.filter(user=self.request.user)
+    queryset = Profile.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
