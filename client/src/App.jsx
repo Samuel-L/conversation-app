@@ -11,6 +11,7 @@ import red from '@material-ui/core/colors/red';
 
 import Header from './components/Header';
 import HomePage from './pages/Home';
+import DashboardPage from './pages/Dashboard';
 
 const theme = createMuiTheme({
   palette: {
@@ -28,7 +29,7 @@ const App = props => (
       ?
         <Route exact path="/" component={HomePage} />
       :
-        <div>Dashboard</div>
+        <Route exact path="/" component={DashboardPage} />
     }
   </MuiThemeProvider>
 );
