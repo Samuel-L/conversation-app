@@ -10,11 +10,9 @@ from django.dispatch import receiver
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 
-from api.settings import BASE_DIR
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='avatars', default='{0}/avatars/Avatar.jpg'.format(BASE_DIR))
+    avatar = models.ImageField(upload_to='avatars', default='/avatars/Avatar.jpg')
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
