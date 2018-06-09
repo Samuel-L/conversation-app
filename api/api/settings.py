@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # project apps
     'register.apps.RegisterConfig',
+    'conversation.apps.ConversationConfig',
     # Third party apps
     'rest_framework',
     'corsheaders',
