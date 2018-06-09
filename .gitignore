@@ -1,4 +1,5 @@
 env
+CACHE
 node_modules
 .env
 __pycache__
