@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.utils import timezone
 from rest_framework import viewsets, status
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, NotFound
 
 from utils.permissions import IsPartOfConversation, IsSenderOrReceiver, IsReceiver
 from conversation.models import Conversation, Message
@@ -28,10 +28,19 @@ class MessageViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """
-        Only return messages where requesting user is sender
-        or receiver.
+        If conversation query, filter against that and then filter out messages
+        where user is not sender or receiver.
+
+        If no conversation query, just filter out messages where user is not
+        sender or receiver.
         """
         messages = Message.objects.filter(Q(sent_by=self.request.user) | Q(sent_to=self.request.user))
+        conversation_id = self.request.query_params.get('conversation', None)
+        if conversation_id is not None:
+            conversation = Conversation.objects.get(pk=conversation_id)
+            if conversation.user_a != self.request.user and conversation.user_b != self.request.user:
+                raise NotFound(detail='Conversation not found.')
+            messages = messages.filter(conversation=conversation_id)
         return messages
 
     def perform_create(self, serializer):

@@ -91,3 +91,10 @@ class MessageViewSet(APITestCase):
         response = self.client.post(self.url, data=self.data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data[0], 'You are not part of that conversation!')
+
+    def test_uses_query_parameter_if_it_exists(self):
+        self.client.force_authenticate(user=self.user_a)
+        
+        response = self.client.get(self.url, { 'conversation': 1 })
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
