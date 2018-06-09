@@ -98,3 +98,10 @@ class MessageViewSet(APITestCase):
         response = self.client.get(self.url, { 'conversation': 1 })
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
+
+    def test_raises_not_found_if_not_part_of_query_conversation(self):
+        self.client.force_authenticate(user=self.user_a)
+
+        response = self.client.get(self.url, { 'conversation': 2 })
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertEqual(str(response.data['detail']), 'Conversation not found.')
