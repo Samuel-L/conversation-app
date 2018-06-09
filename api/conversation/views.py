@@ -48,6 +48,8 @@ class MessageViewSet(viewsets.ModelViewSet):
 
         if conversation.is_archived:
             raise ValidationError('That conversation is archived!')
+        elif conversation.user_a != self.request.user and conversation.user_b != self.request.user:
+            raise ValidationError('You are not part of that conversation!')
 
         created_at = timezone.now()
         serializer.save(sent_by=self.request.user, sent_to=sent_to, created_at=created_at)

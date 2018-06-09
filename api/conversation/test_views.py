@@ -79,3 +79,15 @@ class MessageViewSet(APITestCase):
 
         response = self.client.post(self.url, data=self.data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_cannot_send_messages_on_conversation_where_not_included(self):
+        """
+        User should not be able to send messages on conversations where they're
+        not included.
+        """
+        self.client.force_authenticate(user=self.user_a)
+        self.data['conversation'] = 4
+
+        response = self.client.post(self.url, data=self.data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data[0], 'You are not part of that conversation!')
