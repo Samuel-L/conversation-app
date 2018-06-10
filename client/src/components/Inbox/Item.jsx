@@ -106,6 +106,7 @@ const Item = (props) => {
           </Grid>
           <Grid item xs={12}>
             Map messages here. Give this grid a max height and scroll.
+            If conversation === archived, dont show input box, show archived instead.
           </Grid>
         </Grid>
       </ExpansionPanelDetails>

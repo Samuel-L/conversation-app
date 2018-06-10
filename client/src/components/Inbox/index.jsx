@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 
 import Parser from '../../utils/parser';
 import Item from './Item';
+import Snackbars from './Snackbars';
 import { fetchConversations } from '../../redux-modules/conversation-fetcher';
+import { deleteConversation, resetState as resetDeleteState } from '../../redux-modules/conversation-deleter';
 
 class Inbox extends Component {
   state = {
@@ -20,11 +22,15 @@ class Inbox extends Component {
   };
 
   handleItemDelete = (id) => {
-    console.log(`delete id ${id}`);
+    this.props.deleteConversation(id);
   };
 
   handleItemArchive = (id) => {
     console.log(`archive id ${id}`);
+  };
+
+  handleSnackbarClose = () => {
+    this.props.resetDeleteState();
   };
 
   render() {
@@ -42,6 +48,11 @@ class Inbox extends Component {
             />
           ))
         }
+        <Snackbars
+          handleClose={this.handleSnackbarClose}
+          deleteSuccess={this.props.deleted}
+          archiveSuccess={false}
+        />
       </div>
     );
   }
@@ -49,19 +60,26 @@ class Inbox extends Component {
 
 const mapStateToProps = state => ({
   conversations: state.conversationFetcherReducer.conversations,
+  deleted: state.conversationDeleterReducer.deleted,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchConversations: () => dispatch(fetchConversations()),
+  deleteConversation: id => dispatch(deleteConversation(id)),
+  resetDeleteState: () => dispatch(resetDeleteState()),
 });
 
 Inbox.propTypes = {
   fetchConversations: PropTypes.func.isRequired,
+  deleteConversation: PropTypes.func.isRequired,
+  resetDeleteState: PropTypes.func.isRequired,
   conversations: PropTypes.arrayOf(PropTypes.instanceOf(Parser)),
+  deleted: PropTypes.bool,
 };
 
 Inbox.defaultProps = {
   conversations: [new Parser(null, null)],
+  deleted: false,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
