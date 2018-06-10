@@ -82,11 +82,13 @@ Inbox.propTypes = {
   resetArchiveState: PropTypes.func.isRequired,
   conversations: PropTypes.arrayOf(PropTypes.instanceOf(Parser)),
   deleted: PropTypes.bool,
+  archived: PropTypes.bool,
 };
 
 Inbox.defaultProps = {
   conversations: [new Parser(null, null)],
   deleted: false,
+  archived: false,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
