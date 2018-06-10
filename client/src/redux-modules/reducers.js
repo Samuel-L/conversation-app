@@ -6,6 +6,7 @@ import conversationCreatorReducer from './conversation-creator';
 import conversationFetcherReducer from './conversation-fetcher';
 import conversationDeleterReducer from './conversation-deleter';
 import conversationArchiverReducer from './conversation-archiver';
+import sendMessageReducer from './send-message';
 
 
 export default combineReducers({
@@ -15,4 +16,5 @@ export default combineReducers({
   conversationFetcherReducer,
   conversationDeleterReducer,
   conversationArchiverReducer,
+  sendMessageReducer,
 });

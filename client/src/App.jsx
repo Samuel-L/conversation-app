@@ -9,7 +9,7 @@ import blueGrey from '@material-ui/core/colors/blueGrey';
 import cyan from '@material-ui/core/colors/cyan';
 import red from '@material-ui/core/colors/red';
 
-import Header from './components/Header';
+import HeaderComponent from './components/Header';
 import HomePage from './pages/Home';
 import DashboardPage from './pages/Dashboard';
 
@@ -24,7 +24,7 @@ const theme = createMuiTheme({
 const App = props => (
   <MuiThemeProvider theme={theme}>
     <CssBaseline />
-    <Header isLoggedIn={props.isLoggedIn} />
+    <HeaderComponent isLoggedIn={props.isLoggedIn} />
     { !props.isLoggedIn
       ?
         <Route exact path="/" component={HomePage} />

@@ -70,6 +70,10 @@ class Parser {
   get avatar() {
     return this.data.avatar;
   }
+
+  get messages() {
+    return this.data.messages;
+  }
 }
 
 export default Parser;

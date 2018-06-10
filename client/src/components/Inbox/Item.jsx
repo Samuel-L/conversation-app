@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
 import Parser from '../../utils/parser';
+import MessageBox from '../MessageBox';
 
 const styles = theme => ({
   image: {
@@ -51,6 +52,10 @@ const styles = theme => ({
       backgroundColor: red[700],
       color: 'white',
     },
+  },
+  messageBox: {
+    maxHeight: '250px',
+    overflow: 'scroll',
   },
 });
 
@@ -104,9 +109,8 @@ const Item = (props) => {
           <Grid item xs={12}>
             <Divider />
           </Grid>
-          <Grid item xs={12}>
-            Map messages here. Give this grid a max height and scroll.
-            If conversation === archived, dont show input box, show archived instead.
+          <Grid item xs={12} className={classes.messageBox}>
+            <MessageBox messages={conversation.messages} conversationID={conversation.id} />
           </Grid>
         </Grid>
       </ExpansionPanelDetails>
