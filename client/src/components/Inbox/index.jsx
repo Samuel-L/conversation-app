@@ -19,6 +19,14 @@ class Inbox extends Component {
     this.setState({ expanded: expanded ? panel : false });
   };
 
+  handleItemDelete = (id) => {
+    console.log(`delete id ${id}`);
+  };
+
+  handleItemArchive = (id) => {
+    console.log(`archive id ${id}`);
+  };
+
   render() {
     return (
       <div>
@@ -29,6 +37,8 @@ class Inbox extends Component {
               conversation={conversation}
               expanded={this.state.expanded}
               handleChange={this.handleExpansionPanel}
+              handleDelete={this.handleItemDelete}
+              handleArchive={this.handleItemArchive}
             />
           ))
         }

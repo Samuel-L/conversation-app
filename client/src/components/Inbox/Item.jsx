@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 
 import Parser from '../../utils/parser';
 
@@ -37,6 +41,17 @@ const styles = theme => ({
   timestamp: {
     flexBasis: '25%',
   },
+  button: {
+    margin: theme.spacing.unit * 2,
+  },
+  deleteButton: {
+    backgroundColor: red[500],
+    color: 'white',
+    '&:hover': {
+      backgroundColor: red[700],
+      color: 'white',
+    },
+  },
 });
 
 const Item = (props) => {
@@ -66,7 +81,33 @@ const Item = (props) => {
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        Mapped message components and message input box underneath.
+        <Grid container>
+          <Grid item xs={12}>
+            <Divider />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              variant="raised"
+              className={classnames(classes.button, classes.deleteButton)}
+              onClick={() => { props.handleDelete(conversation.id); }}
+            >
+              Delete
+            </Button>
+            <Button
+              variant="raised"
+              className={classes.button}
+              onClick={() => { props.handleArchive(conversation.id); }}
+            >
+              Archive
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Divider />
+          </Grid>
+          <Grid item xs={12}>
+            Map messages here. Give this grid a max height and scroll.
+          </Grid>
+        </Grid>
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
@@ -75,6 +116,8 @@ const Item = (props) => {
 Item.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   handleChange: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleArchive: PropTypes.func.isRequired,
   conversation: PropTypes.instanceOf(Parser).isRequired,
   expanded: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
