@@ -14,7 +14,7 @@ export const actions = {
 };
 
 export const initialState = {
-  registering: false, registered: false, error: null, usernameTaken: false,
+  registering: false, registered: false, error: null, usernameTaken: false, createdUserId: null,
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -23,7 +23,12 @@ export default function reducer(state = initialState, action = {}) {
       return { ...state, registering: true };
     }
     case USER_REGISTER_SUCCESS: {
-      return { ...state, registering: false, registered: true };
+      return {
+        ...state,
+        registering: false,
+        registered: true,
+        createdUserId: action.payload,
+      };
     }
     case USER_REGISTER_FAILURE: {
       return { ...state, registering: false, error: action.payload };
@@ -47,8 +52,8 @@ export const registerUser = (username, password) => (dispatch) => {
   const payload = { username, password };
 
   return axios.post(`${apiURL}/register/`, payload, headers)
-    .then(() => {
-      dispatch({ type: USER_REGISTER_SUCCESS });
+    .then((response) => {
+      dispatch({ type: USER_REGISTER_SUCCESS, payload: response.data.id });
     })
     .catch((error) => {
       dispatch({ type: USER_REGISTER_FAILURE, payload: error.response.status });

@@ -28,8 +28,8 @@ describe('redux-module: register', () => {
     });
 
     it('handles USER_REGISTER_SUCCESS', () => {
-      const action = { type: actions.USER_REGISTER_SUCCESS };
-      const correctState = { ...initialState, registered: true };
+      const action = { type: actions.USER_REGISTER_SUCCESS, payload: 0};
+      const correctState = { ...initialState, registered: true, createdUserId: 0 };
 
       expect(reducer(undefined, action)).toEqual(correctState);
     });
@@ -52,7 +52,7 @@ describe('redux-module: register', () => {
   describe('action creators', () => {
     describe('registerUser()', () => {
       beforeEach(() => {
-              });
+      });
 
       afterEach(() => {
         store.clearActions();
@@ -68,8 +68,8 @@ describe('redux-module: register', () => {
       });
 
       it('creates USER_REGISTER_SUCCESS if registration was successful', () => {
-        axiosMock.onPost(`${apiURL}/register/`).reply(HttpStatus.CREATED);
-        const expectedAction = { type: actions.USER_REGISTER_SUCCESS };
+        axiosMock.onPost(`${apiURL}/register/`).reply(HttpStatus.CREATED, { id: 0 });
+        const expectedAction = { type: actions.USER_REGISTER_SUCCESS, payload: 0 };
 
         return store.dispatch(registerUser('username', 'password')).then(() => {
           expect(store.getActions()[1]).toEqual(expectedAction);
