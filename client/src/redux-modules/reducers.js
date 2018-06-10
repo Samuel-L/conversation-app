@@ -5,6 +5,8 @@ import authReducer from './auth';
 import conversationCreatorReducer from './conversation-creator';
 import conversationFetcherReducer from './conversation-fetcher';
 import conversationDeleterReducer from './conversation-deleter';
+import conversationArchiverReducer from './conversation-archiver';
+
 
 export default combineReducers({
   registerReducer,
@@ -12,4 +14,5 @@ export default combineReducers({
   conversationCreatorReducer,
   conversationFetcherReducer,
   conversationDeleterReducer,
+  conversationArchiverReducer,
 });

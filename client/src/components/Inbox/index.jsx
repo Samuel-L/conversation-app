@@ -7,6 +7,7 @@ import Item from './Item';
 import Snackbars from './Snackbars';
 import { fetchConversations } from '../../redux-modules/conversation-fetcher';
 import { deleteConversation, resetState as resetDeleteState } from '../../redux-modules/conversation-deleter';
+import { archiveConversation, resetState as resetArchiveState } from '../../redux-modules/conversation-archiver';
 
 class Inbox extends Component {
   state = {
@@ -26,11 +27,12 @@ class Inbox extends Component {
   };
 
   handleItemArchive = (id) => {
-    console.log(`archive id ${id}`);
+    this.props.archiveConversation(id);
   };
 
   handleSnackbarClose = () => {
     this.props.resetDeleteState();
+    this.props.resetArchiveState();
   };
 
   render() {
@@ -51,7 +53,7 @@ class Inbox extends Component {
         <Snackbars
           handleClose={this.handleSnackbarClose}
           deleteSuccess={this.props.deleted}
-          archiveSuccess={false}
+          archiveSuccess={this.props.archived}
         />
       </div>
     );
@@ -61,11 +63,14 @@ class Inbox extends Component {
 const mapStateToProps = state => ({
   conversations: state.conversationFetcherReducer.conversations,
   deleted: state.conversationDeleterReducer.deleted,
+  archived: state.conversationArchiverReducer.archived,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchConversations: () => dispatch(fetchConversations()),
   deleteConversation: id => dispatch(deleteConversation(id)),
+  archiveConversation: id => dispatch(archiveConversation(id)),
+  resetArchiveState: () => dispatch(resetArchiveState()),
   resetDeleteState: () => dispatch(resetDeleteState()),
 });
 
@@ -73,6 +78,8 @@ Inbox.propTypes = {
   fetchConversations: PropTypes.func.isRequired,
   deleteConversation: PropTypes.func.isRequired,
   resetDeleteState: PropTypes.func.isRequired,
+  archiveConversation: PropTypes.func.isRequired,
+  resetArchiveState: PropTypes.func.isRequired,
   conversations: PropTypes.arrayOf(PropTypes.instanceOf(Parser)),
   deleted: PropTypes.bool,
 };
