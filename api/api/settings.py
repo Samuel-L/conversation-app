@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import datetime
 import dj_database_url
 from decouple import config
 
@@ -35,7 +36,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # project apps
     'register.apps.RegisterConfig',
+    'conversation.apps.ConversationConfig',
     # Third party apps
+    'imagekit',
     'rest_framework',
     'corsheaders',
     # Django apps
@@ -144,11 +147,14 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     )
 }
 
@@ -162,3 +168,7 @@ else:
     CORS_ORIGIN_WHITELIST = (
         config('WHITELIST_URL')
     )
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=1800),
+}

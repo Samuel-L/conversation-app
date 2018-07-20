@@ -1,0 +1,35 @@
+[
+  { "model": "conversation.Message",
+    "pk": 1,
+    "fields": {
+      "sent_by": 1,
+      "sent_to": 2,
+      "conversation": 1,
+      "created_at": "2018-03-16T20:41:28+00:00",
+      "is_read": true,
+      "body": "This is a test message"
+    }
+  },
+  { "model": "conversation.Message",
+    "pk": 2,
+    "fields": {
+      "sent_by": 2,
+      "sent_to": 1,
+      "conversation": 1,
+      "created_at": "2018-03-16T20:45:28+00:00",
+      "is_read": false,
+      "body": "This is a test message from user 2"
+    }
+  },
+  { "model": "conversation.Message",
+    "pk": 3,
+    "fields": {
+      "sent_by": 2,
+      "sent_to": 3,
+      "conversation": 2,
+      "created_at": "2018-03-16T20:45:28+00:00",
+      "is_read": false,
+      "body": "This is a test message from user 2"
+    }
+  }
+]

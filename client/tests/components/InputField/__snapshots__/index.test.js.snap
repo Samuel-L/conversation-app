@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component: InputField rendering matches snapshot 1`] = `
+<div
+  className="MuiFormControl-root-2 InputField-formControl-1"
+  onBlur={[Function]}
+  onFocus={[Function]}
+>
+  <label
+    className="MuiFormLabel-root-11 MuiInputLabel-root-6 MuiInputLabel-formControl-7 MuiInputLabel-animated-10"
+    data-shrink={false}
+    htmlFor="test"
+  >
+    test
+  </label>
+  <div
+    className="MuiInput-root-16 MuiInput-formControl-17 MuiInput-underline-20"
+  >
+    <input
+      aria-invalid={false}
+      aria-required={false}
+      className="MuiInput-input-24"
+      disabled={false}
+      id="test"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <p
+    className="MuiFormHelperText-root-29"
+    id="test-help-text"
+  />
+</div>
+`;

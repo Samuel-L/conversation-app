@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component: Header matches snapshot 1`] = `
+<div
+  className=""
+>
+  <header
+    className="MuiPaper-root-9 MuiPaper-elevation4-15 MuiAppBar-root-1 MuiAppBar-positionStatic-5 MuiAppBar-colorPrimary-7"
+  >
+    <div
+      className="MuiToolbar-root-36 MuiToolbar-gutters-37"
+    >
+      <h2
+        className="MuiTypography-root-38 MuiTypography-title-44 MuiTypography-colorInherit-57"
+      >
+        Conversationalist
+      </h2>
+    </div>
+  </header>
+</div>
+`;

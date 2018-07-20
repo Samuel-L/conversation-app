@@ -5,4 +5,7 @@ module.exports = {
     "env",
   ],
   setupTestFrameworkScriptFile: "./client/tests/setupTests.js",
+  setupFiles: [
+    "jest-localstorage-mock",
+  ],
 };
